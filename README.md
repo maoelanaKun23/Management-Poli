@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# mobilekampus
+# Management Poliklinik Application
 
 A new Flutter project.
 
@@ -18,4 +17,3 @@ samples, guidance on mobile development, and a full API reference.
 =======
 # Management-Poli
 Mobile App dengan menggunakan Flutter
->>>>>>> 448e3bd8b249bb564060be5bc55ec39ed993102b
