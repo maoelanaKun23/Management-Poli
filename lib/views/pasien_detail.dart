@@ -1,34 +1,44 @@
 import 'package:flutter/material.dart';
-import '../model/poli.dart';
+// import '../model/poli.dart';
+import '../model/pasien.dart';
 
-class PoliDetail extends StatefulWidget {
-  final Poli poli;
-  final Function(String) onUpdate; // Callback untuk update poli
-  final Function() onDelete; // Callback untuk hapus poli
+class PasienDetail extends StatefulWidget {
+  final Pasien pasien;
+  // final String nomor_rm;
+  // final String alamat;
+  // final String tanggal_lahir;
+  // final String nomor_telepon;
 
-  const PoliDetail({
+  final Function(String) onUpdate;
+  final Function() onDelete;
+
+  const PasienDetail({
     super.key,
-    required this.poli,
+    required this.pasien,
+    // required this.nomor_rm,
+    // required this.alamat,
+    // required this.tanggal_lahir,
+    // required this.nomor_telepon,
     required this.onUpdate,
     required this.onDelete,
   });
 
   @override
-  State<PoliDetail> createState() => _PoliDetailState();
+  State<PasienDetail> createState() => _PasienDetailState();
 }
 
-class _PoliDetailState extends State<PoliDetail> {
-  final TextEditingController _namaPoliController = TextEditingController();
+class _PasienDetailState extends State<PasienDetail> {
+  final TextEditingController _namaPasienController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _namaPoliController.text = widget.poli.namaPoli ?? ""; // Mengisi controller dengan nama poli
+    _namaPasienController.text = widget.pasien.namaPasien ?? "";
   }
 
   @override
   void dispose() {
-    _namaPoliController.dispose();
+    _namaPasienController.dispose();
     super.dispose();
   }
 
@@ -36,10 +46,9 @@ class _PoliDetailState extends State<PoliDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Detail Poli", 
-        style: TextStyle(
-          color: Colors.white
-        ),
+        title: const Text(
+          "Detail Pasien",
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color(0xFF2499C0),
       ),
@@ -49,7 +58,27 @@ class _PoliDetailState extends State<PoliDetail> {
           children: [
             const SizedBox(height: 20),
             Text(
-              "Nama Poli: ${widget.poli.namaPoli}",
+              "Nama Pasien: ${widget.pasien.namaPasien}",
+              style: const TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 40),
+            Text(
+              "Nomor Rumah Sakit: ${widget.pasien.nomor_rm}",
+              style: const TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 40),
+            Text(
+              "Tanggal Lahir: ${widget.pasien.tanggal_lahir}",
+              style: const TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 40),
+            Text(
+              "Alamat: ${widget.pasien.alamat}",
+              style: const TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 40),
+            Text(
+              "Nomor Telepon: ${widget.pasien.nomor_telepon}",
               style: const TextStyle(fontSize: 20),
             ),
             const SizedBox(height: 40),
@@ -62,10 +91,11 @@ class _PoliDetailState extends State<PoliDetail> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: const Text("Ubah Nama Poli"),
+                          title: const Text("Ubah Nama Pasien"),
                           content: TextField(
-                            controller: _namaPoliController,
-                            decoration: const InputDecoration(hintText: "Nama Poli Baru"),
+                            controller: _namaPasienController,
+                            decoration: const InputDecoration(
+                                hintText: "Nama Pasien Baru"),
                           ),
                           actions: [
                             TextButton(
@@ -76,7 +106,10 @@ class _PoliDetailState extends State<PoliDetail> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Navigator.pop(context, _namaPoliController.text); // Kembali dengan nama baru
+                                Navigator.pop(
+                                    context,
+                                    _namaPasienController
+                                        .text); // Kembali dengan nama baru
                               },
                               child: const Text("Simpan"),
                             ),
@@ -86,7 +119,8 @@ class _PoliDetailState extends State<PoliDetail> {
                     );
 
                     if (updatedName != null && updatedName.isNotEmpty) {
-                      widget.onUpdate(updatedName); // Panggil callback untuk update
+                      widget.onUpdate(
+                          updatedName); // Panggil callback untuk update
                       setState(() {}); // Memperbarui UI
                     }
                   },

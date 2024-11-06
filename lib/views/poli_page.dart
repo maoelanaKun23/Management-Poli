@@ -24,7 +24,8 @@ class _PolipageState extends State<Polipage> {
 
     if (result != null && result is String) {
       setState(() {
-        poliList.add(Poli(namaPoli: result)); // Menambahkan nama poli baru ke daftar
+        poliList.add(
+            Poli(namaPoli: result)); // Menambahkan nama poli baru ke daftar
       });
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Poli baru berhasil ditambahkan')),
@@ -53,25 +54,25 @@ class _PolipageState extends State<Polipage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Data Poli",
-          style: TextStyle(
-            fontSize: 24,
-            color: Colors.white,
-          ),
-        ),
-        actions: [
-          GestureDetector(
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-            onTap: _addPoli,
-          )
-        ],
-        backgroundColor: const Color(0xFF2499C0),
-      ),
+      // appBar: AppBar(
+      //   title: const Text(
+      //     "Data Poli",
+      //     style: TextStyle(
+      //       fontSize: 24,
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      //   actions: [
+      //     GestureDetector(
+      //       child: const Icon(
+      //         Icons.add,
+      //         color: Colors.white,
+      //       ),
+      //       onTap: _addPoli,
+      //     )
+      //   ],
+      //   backgroundColor: const Color(0xFF2499C0),
+      // ),
       body: ListView.builder(
         itemCount: poliList.length,
         itemBuilder: (context, index) {
@@ -93,6 +94,13 @@ class _PolipageState extends State<Polipage> {
             ),
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          _addPoli();
+        },
+        label: Text("Add Poli"),
+        icon: Icon(Icons.add),
       ),
     );
   }
