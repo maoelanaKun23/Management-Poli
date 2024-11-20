@@ -3,8 +3,8 @@ import '../model/poli.dart';
 
 class PoliDetail extends StatefulWidget {
   final Poli poli;
-  final Function(String) onUpdate; // Callback untuk update poli
-  final Function() onDelete; // Callback untuk hapus poli
+  final Function(String) onUpdate; 
+  final Function() onDelete;
 
   const PoliDetail({
     super.key,
@@ -23,7 +23,7 @@ class _PoliDetailState extends State<PoliDetail> {
   @override
   void initState() {
     super.initState();
-    _namaPoliController.text = widget.poli.namaPoli ?? ""; // Mengisi controller dengan nama poli
+    _namaPoliController.text = widget.poli.namaPoli ?? "";
   }
 
   @override

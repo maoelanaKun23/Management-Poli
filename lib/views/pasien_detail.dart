@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import '../model/poli.dart';
 import '../model/pasien.dart';
+import '../views/pasien_page.dart';
 
 class PasienDetail extends StatefulWidget {
   final Pasien pasien;
@@ -107,9 +108,7 @@ class _PasienDetailState extends State<PasienDetail> {
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(
-                                    context,
-                                    _namaPasienController
-                                        .text);
+                                    context, _namaPasienController.text);
                               },
                               child: const Text("Simpan"),
                             ),
@@ -119,9 +118,8 @@ class _PasienDetailState extends State<PasienDetail> {
                     );
 
                     if (updatedName != null && updatedName.isNotEmpty) {
-                      widget.onUpdate(
-                          updatedName);
-                      setState(() {}); 
+                      widget.onUpdate(updatedName);
+                      setState(() {});
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -130,10 +128,56 @@ class _PasienDetailState extends State<PasienDetail> {
                   child: const Text("Ubah"),
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    widget.onDelete();
-                    Navigator.pop(context);
+                  // onPressed: () => showDialog<String>(
+                  //   context: context,
+                  //   builder: (BuildContext context) => AlertDialog(
+                  //     title: const Text('Delete Confirmation'),
+                  //     content: const Text(
+                  //         'Apakah Yakin Ingin Mengahapus Data Ini ?'),
+                  //     actions: <Widget>[
+                  //       TextButton(
+                  //         onPressed: () => Navigator.pop(context, 'Cancel'),
+                  //         child: const Text('Cancel'),
+                  //       ),
+                  //       TextButton(
+                  //         onPressed: () =>
+                  //             Navigator.pop(context, widget.onDelete()),
+                  //         child: const Text('Hapus'),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  onPressed: () async {
+                    final deleteConfirmation = await showDialog<bool>(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title:
+                              const Text("Apakah Yakin Ingin Hapus Data Ini?"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, false);
+                              },
+                              child: const Text("Batal"),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                await widget.onDelete();
+                                Navigator.pop(context, true);
+                              },
+                              child: const Text("Hapus"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+
+                    if (deleteConfirmation == true) {
+                      Navigator.pop(context);
+                    }
                   },
+
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
                   ),
