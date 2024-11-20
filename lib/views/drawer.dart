@@ -31,7 +31,7 @@ class _DrawerExampleState extends State<DrawerExample> {
   String titlePage = '';
   final List<Map<String, dynamic>> pages = [
     {'page': Polipage(), 'title': 'Data Poli'},
-    {'page': Center(child: Text("Profile Page")), 'title': 'Profile'},
+    {'page': Pasienpage(), 'title': 'Data Pasien'},
     {'page': Center(child: Text("Settings Page")), 'title': 'Settings'},
   ];
 

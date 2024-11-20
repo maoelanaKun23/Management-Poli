@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../views/homeviews.dart';
 
 class NavigationExample extends StatefulWidget {
   const NavigationExample({super.key});
@@ -155,13 +154,6 @@ class _NavigationExampleState extends State<NavigationExample> {
               ),
             );
           },
-        ),
-        Card(
-          shadowColor: Colors.transparent,
-          margin: const EdgeInsets.all(0.0),
-          child: SizedBox.expand(
-            child: Center(child: Homeviews()),
-          ),
         ),
       ][currentPageIndex],
     );
