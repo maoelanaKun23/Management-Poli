@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../views/pasien_detail.dart';
 import '../views/poli_form.dart';
 import '../model/pasien.dart';
+import '../views/pasien_form.dart';
 
 class Pasienpage extends StatefulWidget {
   @override
@@ -43,7 +44,7 @@ class _PasienpageState extends State<Pasienpage> {
   void _addPasien() async {
     final result = await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => PoliForm()),
+      MaterialPageRoute(builder: (context) => PasienForm()),
     );
 
     if (result != null && result is String) {

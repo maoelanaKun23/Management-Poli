@@ -100,7 +100,7 @@ class _PasienDetailState extends State<PasienDetail> {
                           actions: [
                             TextButton(
                               onPressed: () {
-                                Navigator.pop(context); // Tutup dialog
+                                Navigator.pop(context);
                               },
                               child: const Text("Batal"),
                             ),
@@ -109,7 +109,7 @@ class _PasienDetailState extends State<PasienDetail> {
                                 Navigator.pop(
                                     context,
                                     _namaPasienController
-                                        .text); // Kembali dengan nama baru
+                                        .text);
                               },
                               child: const Text("Simpan"),
                             ),
@@ -120,8 +120,8 @@ class _PasienDetailState extends State<PasienDetail> {
 
                     if (updatedName != null && updatedName.isNotEmpty) {
                       widget.onUpdate(
-                          updatedName); // Panggil callback untuk update
-                      setState(() {}); // Memperbarui UI
+                          updatedName);
+                      setState(() {}); 
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -131,8 +131,8 @@ class _PasienDetailState extends State<PasienDetail> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    widget.onDelete(); // Panggil callback untuk hapus
-                    Navigator.pop(context); // Kembali ke halaman sebelumnya
+                    widget.onDelete();
+                    Navigator.pop(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
